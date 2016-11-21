@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">	
+	<title>KL Soft</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="Sergey Shevchenko, KL Soft">
+	<meta name="description" content="KL Soft home page">
+	<meta name="keywords" content="Sergey Shevchenko, KL Soft, team, developer, development, projects, autoplay express, autoplay menu, autoplay CD, autorun">
+	<base href="https://kl-soft.github.io/">
+	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+	<!-- HTML5 tweak for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script async src="https://www.google-analytics.com/analytics.js"></script>
+	<script>
+		window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+		ga('create', 'UA-701337-1', 'auto');
+		ga('send', 'pageview');
+
+		$(function() {
+			$('#contact_us').on('submit', function() {
+				var form = this;
+				var $post_result = $('#post_result');
+				
+				$('button', form).button('loading');
+				$post_result.removeClass('alert-success alert-error').html('').stop().hide();
+
+				// do ajax post
+				var post_data = $(form).serialize();
+				post_data = post_data + '&js_executed=yes';
+				$.post(form.action, post_data, 'json')
+					.done(function(data) {
+						if (!data || !data.result) {
+							$post_result.addClass('alert-error').html('Error: incorrect server response');
+						} else {
+							if (data.result == 'ok') {
+								$post_result.addClass('alert-success');
+							} else {
+								$post_result.addClass('alert-error');
+							}
+							$post_result.html(data.message);
+						}
+					})
+					.fail(function(error, msg) {
+						if (error) {
+							msg = 'Network Error: ' + error.status + ' ' + error.statusText;
+						}
+						$post_result.addClass('alert-error').html(msg);
+					})
+					.always(function() {
+						$post_result.stop().fadeIn().delay(30000).fadeOut();
+						$('button', form).button('complete');
+					});
+
+				return false;
+			});
+		});
+	</script>
+	<style>
+		p.header-text {
+			font-size: 16px;
+			line-height: 22px;
+		}
+		.header-logo {
+			margin: 8px 0;
+		}
+		:focus {
+			outline: none !important;
+		}
+	</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="row">
+	<div class="span8 offset2">
+		<div class="header-logo pagination-centered">
+			<a href="https://kl-soft.github.io/" title="KL Soft home"><img src="img/klsoft_logo.png" alt="AutoPlay Express by KL Soft (Sergey Shevchenko)" width="328" height="120"></a>
+		</div>
+		<p class="header-text">KL Soft is a team of professional software developers headed by <a href="https://www.linkedin.com/in/sergey-shevchenko-5b410b85" target="_blank">Sergey Shevchenko</a>. Established in 2000, we have vast experience in different IT fields including developing end-user applications, eCommerce web sites, turnkey custom solutions and providing technical analysis and consultations. Nowadays our main focus is on web development. See below our public desktop application projects.</p>
+		<div class="page-header">
+			<h3>AutoPlay Express <br class="visible-phone" /><small>Live Project</small></h3>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="span8 offset2">
+		<div class="row-fluid">
+			<div class="span4 pagination-centered">
+				<p><a href="https://autoplay-express.github.io/" title="AutoPlay Express - software to create autoplay menu" target="_blank"><img src="img/autoplay_logo.png" alt="AutoPlay Express" width="170" height="116"></a></p>
+			</div>
+			<div class="span8">
+				<p><a href="https://autoplay-express.github.io/" target="_blank">AutoPlay Express</a> is a software tool to create simple and advanced autoplay menus for CD and DVD media. It will make your business card CDs, multimedia presentations or movies/pictures collections look and run professionally. The intuitive user-friendly interface allows to design autoplay menus fully visually and entirely in a point-and-click mode. Just type your texts and drop pictures, buttons and interactive/multimedia stuff to create autorun CD menu. With <a href="https://autoplay-express.github.io/" target="_blank">AutoPlay Express</a> you see exactly what you get.</p>
+				<p>For more details visit <a href="https://autoplay-express.github.io/" target="_blank">autoplay-express.github.io</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="span8 offset2">
+		<div class="page-header">
+			<h3>Other Projects <br class="visible-phone" /><small>Projects with ended lifespan</small></h3>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="span8 offset2">
+		<div class="row-fluid">
+			<div class="span4">
+				<h4>Worm Detector</h4>
+				<p>An antivirus tool to fight off mail worms and spam. Integrates into popular mailers Outlook 2000 and XP and constantly checks all incoming emails. Intelligent algorithms of detecting worms and spam makes Worm Detector a decent defense from worm threats. </p>
+			</div>
+			<div class="span4">
+				<h4>Nitro Downloader</h4>
+				<p>Modern and easy-to-use tool to manage and accelerate downloads on slow dial-up connections. Features multithreaded downloading, resumes broken downloads, intercepts download links from browser and so on.</p>
+			</div>
+			<div class="span4">
+				<h4>Data Encryption Toolkit</h4>
+				<p>An advanced encryption toolkit with many unique features. It allows you to perform encryption of files and folders in bundles with any of the 8 well-known crypto algorithms. Your sensitive data is guaranteed to be safe.</p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="span8 offset2">
+		<div class="page-header">
+			<h3>Contacts <br class="visible-phone" /><small>Have a question? Feel free to contact us!</small></h3>
+		</div>
+		<noscript>
+			<div class="alert alert-error"><strong>Your browser does not support JavaScript! Please, enable JavaScript or use another browser with JavaScript support.</strong></div>
+		</noscript>
+		<div id="post_result" class="alert hide"></div>
+		<form class="form-horizontal" id="contact_us" method="POST" action="contact_form.php">
+			<div class="control-group"><input class="span8" type="text" placeholder="Name" name="name"></div>
+			<div class="control-group"><input class="span8" type="email" placeholder="Email" name="email"></div>
+			<div class="control-group"><textarea class="span8" rows="4" name="body"></textarea></div>
+			<div class="control-group">
+				<button type="submit" class="btn btn-primary" data-loading-text="Sending..." data-complete-text="Submit">Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
+
+</div>
+
+</body>
+</html>
